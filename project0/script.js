@@ -15,5 +15,12 @@ function newTodo() {
     // increment item count
     document.getElementById('item-count').innerText++;
 
+    // add li for new todo
+    var ul = document.getElementById('todo-list');
+    var li = document.createElement('li');
+    li.appendChild(document.createTextNode("new todo"));
+    li.setAttribute('id', id++);
+    ul.appendChild(li);
+
 }
 
