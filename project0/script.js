@@ -8,7 +8,7 @@ const classNames = {
 const list = document.getElementById('todo-list');
 const itemCountSpan = document.getElementById('item-count');
 const uncheckedCountSpan = document.getElementById('unchecked-count');
-var id = 0;
+let id = 0;
 
 function newTodo() {
 
@@ -19,12 +19,12 @@ function newTodo() {
     incrementUncheckedCount();
 
     // add li for new todo
-    var ul = document.getElementById('todo-list');
-    var li = document.createElement('li');
+    let ul = document.getElementById('todo-list');
+    let li = document.createElement('li');
     li.setAttribute('id', id++);
 
     // add a checkbox next to li
-    var checkbox = document.createElement('input');
+    let checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.name = 'name';
     checkbox.value = 'value';
