@@ -13,6 +13,9 @@ const uncheckedCountSpan = document.getElementById('unchecked-count');
 let uncheckedCount = uncheckedCountSpan;
 let id = 0;
 
+// make object for todos
+let todos = {};
+
 function newTodo() {
 
     // add li for new todo
@@ -46,13 +49,20 @@ function newTodo() {
     // increment unchecked-count
     incrementUncheckedCount();
 
-    // fires handler when checkboxed checked or unchecked
+    // fires handler when checkbox checked or unchecked
     checkbox.onchange = checkboxHandler;
 
 
-    // classNames.TODO_ITEM = classNames.TODO_CHECKBOX + classNames.TODO_TEXT;
-    //
-    // todos.push(classNames.TODO_ITEM);
+    todos.id = id;
+    todos.item = todoText;
+
+    let itemCount = itemCountSpan.innerText;
+    for (let i = 0; i < itemCount; i++) {
+        console.log(todos.id + ":" + todos.item.innerText);
+    }
+
+
+    // let number = todos.push(classNames.TODO_ITEM);
     //
     // // add the checkbox and todo item to ul
     // for(todo in todos){
