@@ -37,8 +37,13 @@ function newTodo() {
     todoText.setAttribute('id', checkbox.id);
     todoText.innerText = ("new todo " + id);
 
+    // add todo items to todos object
+    todos.id = id;
+    todos.item = todoText;
+
+    // add checkbox and todos item to list item
     li.appendChild(checkbox);
-    li.appendChild(todoText);
+    li.appendChild(todos.item);
 
     let ul = document.getElementById('todo-list');
     ul.appendChild(li);
@@ -52,22 +57,6 @@ function newTodo() {
     // fires handler when checkbox checked or unchecked
     checkbox.onchange = checkboxHandler;
 
-
-    todos.id = id;
-    todos.item = todoText;
-
-    let itemCount = itemCountSpan.innerText;
-    for (let i = 0; i < itemCount; i++) {
-        console.log(todos.id + ":" + todos.item.innerText);
-    }
-
-
-    // let number = todos.push(classNames.TODO_ITEM);
-    //
-    // // add the checkbox and todo item to ul
-    // for(todo in todos){
-    //     console.log("55. " + classNames.TODO_ITEM);
-    // }
 }
 
 
