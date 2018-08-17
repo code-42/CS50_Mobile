@@ -10,6 +10,8 @@ const itemCountSpan = document.getElementById('item-count');
 const uncheckedCountSpan = document.getElementById('unchecked-count');
 let id = 0;
 
+let todos = [];
+
 function newTodo() {
 
     // increment item-count
@@ -19,9 +21,16 @@ function newTodo() {
     incrementUncheckedCount();
 
     // add li for new todo
+    addNewTodo();
+}
+
+function addNewTodo() {
+
+    // add li for new todo
     let ul = document.getElementById('todo-list');
     let li = document.createElement('li');
     li.setAttribute('id', id++);
+    // li.appendChild(document.createTextNode("new todo " + id));
 
     // add a checkbox next to li
     let checkbox = document.createElement('input');
@@ -34,14 +43,22 @@ function newTodo() {
     li.appendChild(checkbox);
     li.appendChild(document.createTextNode("new todo " + id));
     ul.appendChild(li);
+}
 
+function addCheckbox() {
+
+    let checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.name = 'name';
+    checkbox.value = 'value';
+    checkbox.id = 'id';
+    li.appendChild(checkbox);
 }
 
 function incrementItemCount() {
 
     // increment item-count
     document.getElementById('item-count').innerText++;
-
 }
 
 function incrementUncheckedCount(){
