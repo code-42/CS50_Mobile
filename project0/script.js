@@ -12,6 +12,10 @@ let id = 0;
 
 let todos = [];
 
+// increment or decrement unchecked-count
+// let uncheckedCount = document.getElementById('unchecked-count').innerText
+uncheckedCount = uncheckedCountSpan;
+
 function newTodo() {
 
     // add li for new todo
@@ -19,17 +23,18 @@ function newTodo() {
     li.className = classNames.TODO_ITEM;
 
     // add a checkbox next to li
-    let checkbox = document.createElement('input');
+    var checkbox = document.createElement('input');
     checkbox.className = classNames.TODO_CHECKBOX;
     checkbox.type = 'checkbox';
-    checkbox.id = 'id';
+    checkbox.name = 'checkbox';
+    checkbox.setAttribute('id', ++id);
 
     // declare id then concat to todoItem
-    li.setAttribute('id', id++);
-    let todoText = li.appendChild(document.createTextNode("new todo " + id));
+    let todoText = document.createElement('span');
     todoText.className = classNames.TODO_TEXT;
+    todoText.setAttribute('id', checkbox.id);
+    todoText.innerText = ("new todo " + id);
 
-    // add the checkbox and todo item to ul
     li.appendChild(checkbox);
     li.appendChild(todoText);
 
@@ -40,10 +45,23 @@ function newTodo() {
     incrementItemCount();
 
     // increment unchecked-count
-    incrementUncheckedCount();
+    uncheckedCount.innerText++;
+    // incrementUncheckedCount();
+    // uncheckedCount = document.getElementById('unchecked-count').innerText;
 
     checkbox.onchange = checkboxHandler;
+
+
+    // classNames.TODO_ITEM = classNames.TODO_CHECKBOX + classNames.TODO_TEXT;
+    //
+    // todos.push(classNames.TODO_ITEM);
+    //
+    // // add the checkbox and todo item to ul
+    // for(todo in todos){
+    //     console.log("55. " + classNames.TODO_ITEM);
+    // }
 }
+
 
 function incrementItemCount() {
 
@@ -54,25 +72,43 @@ function incrementItemCount() {
 function incrementUncheckedCount(){
 
     // increment unchecked-count
-    document.getElementById('unchecked-count').innerText++;
+    // document.getElementById('unchecked-count').innerText++;
+    uncheckedCount.innerText++;
 }
+
 
 function decrementUncheckedCount(){
 
     // decrement unchecked-count
-    document.getElementById('unchecked-count').innerText--;
+    // document.getElementById('unchecked-count').innerText--;
+    uncheckedCount.innerText--;
 }
 
-var uncheckedCount;
-function checkboxHandler(){
 
-    // increment or decrement unchecked-count
-    uncheckedCount = document.getElementById('unchecked-count').innerText;
-    console.log(uncheckedCount);
-    if(uncheckedCount <= 0){
-        incrementUncheckedCount();
+function checkboxHandler() {
+
+    console.log("83. uncheckedCount == " + uncheckedCount.innerText);
+
+    let el = document.getElementById(id);
+    console.log("93. id == " + this.id);
+
+    let itemCount = document.getElementById('item-count').innerText;
+    for (let i = 1; i <= itemCount; i++) {
+        if(document.getElementById(i).checked == true){
+            console.log("91. " + i + " checked!");
+        }
+    }
+
+    if(uncheckedCount.innerText <= 0){
+        // incrementUncheckedCount();
+        // document.getElementById('unchecked-count').innerText++;
+        uncheckedCount.innerText++;
+        console.log("88. incrementing uncheckedCount == " + uncheckedCount.innerText);
     } else {
-        decrementUncheckedCount();
+        // decrementUncheckedCount();
+        // document.getElementById('unchecked-count').innerText--;
+        uncheckedCount.innerText--;
+        console.log("92. decrementing uncheckedCount == " + uncheckedCount.innerText);
     }
 
 }
