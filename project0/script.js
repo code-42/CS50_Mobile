@@ -14,45 +14,35 @@ let todos = [];
 
 function newTodo() {
 
+    // add li for new todo
+    let li = document.createElement('li');
+    li.className = classNames.TODO_ITEM;
+
+    // add a checkbox next to li
+    let checkbox = document.createElement('input');
+    checkbox.className = classNames.TODO_CHECKBOX;
+    checkbox.type = 'checkbox';
+    checkbox.id = 'id';
+
+    // declare id then concat to todoItem
+    li.setAttribute('id', id++);
+    let todoText = li.appendChild(document.createTextNode("new todo " + id));
+    todoText.className = classNames.TODO_TEXT;
+
+    // add the checkbox and todo item to ul
+    li.appendChild(checkbox);
+    li.appendChild(todoText);
+
+    let ul = document.getElementById('todo-list');
+    ul.appendChild(li);
+
     // increment item-count
     incrementItemCount();
 
     // increment unchecked-count
     incrementUncheckedCount();
 
-    // add li for new todo
-    addNewTodo();
-}
-
-function addNewTodo() {
-
-    // add li for new todo
-    let ul = document.getElementById('todo-list');
-    let li = document.createElement('li');
-    li.setAttribute('id', id++);
-    // li.appendChild(document.createTextNode("new todo " + id));
-
-    // add a checkbox next to li
-    let checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.name = 'name';
-    checkbox.value = 'value';
-    checkbox.id = 'id';
-
-    // add the checkbox and todo item to ul
-    li.appendChild(checkbox);
-    li.appendChild(document.createTextNode("new todo " + id));
-    ul.appendChild(li);
-}
-
-function addCheckbox() {
-
-    let checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.name = 'name';
-    checkbox.value = 'value';
-    checkbox.id = 'id';
-    li.appendChild(checkbox);
+    checkbox.onchange = checkboxHandler;
 }
 
 function incrementItemCount() {
@@ -67,9 +57,22 @@ function incrementUncheckedCount(){
     document.getElementById('unchecked-count').innerText++;
 }
 
+function decrementUncheckedCount(){
+
+    // decrement unchecked-count
+    document.getElementById('unchecked-count').innerText--;
+}
+
+var uncheckedCount;
 function checkboxHandler(){
 
-    // increment unchecked-count
-    let unchecked = document.getElementById('unchecked-count');
+    // increment or decrement unchecked-count
+    uncheckedCount = document.getElementById('unchecked-count').innerText;
+    console.log(uncheckedCount);
+    if(uncheckedCount <= 0){
+        incrementUncheckedCount();
+    } else {
+        decrementUncheckedCount();
+    }
 
 }
