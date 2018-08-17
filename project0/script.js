@@ -13,7 +13,10 @@ var id = 0;
 function newTodo() {
 
     // increment item-count
-    document.getElementById('item-count').innerText++;
+    incrementItemCount();
+
+    // increment unchecked-count
+    incrementUncheckedCount();
 
     // add li for new todo
     var ul = document.getElementById('todo-list');
@@ -34,3 +37,22 @@ function newTodo() {
 
 }
 
+function incrementItemCount() {
+
+    // increment item-count
+    document.getElementById('item-count').innerText++;
+
+}
+
+function incrementUncheckedCount(){
+
+    // increment unchecked-count
+    document.getElementById('unchecked-count').innerText++;
+}
+
+function checkboxHandler(){
+
+    // increment unchecked-count
+    let unchecked = document.getElementById('unchecked-count');
+
+}
